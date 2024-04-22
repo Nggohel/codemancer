@@ -12,16 +12,14 @@ function App() {
       {/* home page start */}
 
       <Search />
-      {/* <Cards /> */}
+      <Cards />
 
       {/* homepage end */}
       {/* sec-page-start */}
-
-      {/* <DetailsPage/> */}
+      <DetailsPage/>
       {/* sec-page-end */}
 
-      {/* modal */}
-      {/* <Model /> */}
+   
     </>
   );
 }

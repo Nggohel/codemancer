@@ -1,4 +1,5 @@
 import React from "react";
+import logo from "./Images/Reciepe_logo.png";
 
 function Header() {
   return (
@@ -7,11 +8,12 @@ function Header() {
         <div>
           <a class="navbar-brand" href="#">
             <img
-              src="/docs/5.1/assets/brand/bootstrap-logo.svg"
+              src={logo}
               alt=""
-              width="30"
-              height="24"
+              width="100"
+              height="34"
               class="d-inline-block align-text-top"
+              style={{objectFit:"fill"}}
             />
           </a>
         </div>
