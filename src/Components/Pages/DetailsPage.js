@@ -87,7 +87,6 @@ function DetailsPage() {
               For more Details about recipe{" "}
               <a href={singlerecipes?.url}>link here</a>
             </p>
-          
           </div>
           {/* about recipe end */}
           {/* ingredients list start */}
@@ -120,31 +119,7 @@ function DetailsPage() {
             ) : (
               <p>Loading...</p>
             )}
-            {/* <ol>
-              <li>
-                
-              </li>
-              <li>
-                Some quick example text Some quick example text Some quick
-                example text
-              </li>
-              <li>
-                Some quick example text Some quick example text Some quick
-                example text
-              </li>
-              <li>
-                Some quick example text Some quick example text Some quick
-                example text
-              </li>
-              <li>
-                Some quick example text Some quick example text Some quick
-                example text
-              </li>
-              <li>
-                Some quick example text Some quick example text Some quick
-                example text
-              </li>
-            </ol> */}
+
             {/* guten free */}
             {/* <div className="">
               <p class="card-title">Guten free</p>
@@ -203,7 +178,7 @@ function DetailsPage() {
 
             {/* recipe Auther*/}
             <div>
-              <h5 class="card-title">{singlerecipes?.source}</h5>
+              <h5 class="card-title">source: {singlerecipes?.source}</h5>
             </div>
             {/* line start */}
             <div>
