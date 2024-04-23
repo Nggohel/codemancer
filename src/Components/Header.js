@@ -1,5 +1,6 @@
 import React from "react";
-import logo from "./Images/Reciepe_logo.png";
+import Logo from "./Images/Logo";
+// import logo from "./Images/Reciepe_logo.png";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -8,14 +9,9 @@ function Header() {
       <nav class="navbar navbar-light bg-light">
         <div>
           <a class="navbar-brand" href="#">
-            <img
-              src={logo}
-              alt=""
-              width="100"
-              height="34"
-              class="d-inline-block align-text-top"
-              style={{ objectFit: "fill" }}
-            />
+            <Link to="/">
+              <Logo />
+            </Link>
           </a>
         </div>
         <div>

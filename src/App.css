@@ -7,6 +7,9 @@
 p {
   margin-bottom: 0rem;
 }
+.navbar-light .navbar-brand {
+  color: blue;
+}
 .navbar {
   position: relative;
   display: flex;
@@ -179,7 +182,7 @@ svg.icon-stroke {
 .btn-conatainer {
   display: flex;
   align-items: end;
-  justify-content: end; 
+  justify-content: end;
 }
 .clear-filter-btn {
   border: 1px solid;
