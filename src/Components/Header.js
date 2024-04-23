@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./Images/Reciepe_logo.png";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -13,14 +14,14 @@ function Header() {
               width="100"
               height="34"
               class="d-inline-block align-text-top"
-              style={{objectFit:"fill"}}
+              style={{ objectFit: "fill" }}
             />
           </a>
         </div>
         <div>
-          <a class="navbar-brand" href="#">
-            Home
-          </a>
+          <Link to="/">
+            <a class="navbar-brand">Home</a>
+          </Link>
           <a class="navbar-brand" href="#">
             About
           </a>
