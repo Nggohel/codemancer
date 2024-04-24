@@ -1,29 +1,8 @@
-// import React from "react";
-
-// function Search() {
-//   return (
-//     <div>
-//       <form class="d-flex">
-//         <input
-//           class="form-control me-2"
-//           type="search"
-//           placeholder="Search"
-//           aria-label="Search"
-//         />
-//         <button class="btn" type="submit">
-//           Show filter
-//         </button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Search;
-
 import React, { useState } from "react";
 import Container from "./Conatainer";
 
-function Search() {
+function Search({ onSearchChange }) {
+  const [searchValue, setSearchValue] = useState("");
   const [showContainer, setShowContainer] = useState(false);
 
   const handleShowContainer = () => {
@@ -33,7 +12,11 @@ function Search() {
   const handleCloseContainer = () => {
     setShowContainer(false);
   };
-
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    onSearchChange(value);
+  };
   return (
     <div>
       <form className="d-flex">
@@ -42,9 +25,11 @@ function Search() {
           type="search"
           placeholder="Search"
           aria-label="Search"
+          value={searchValue}
+          onChange={handleInputChange}
         />
         <button className="btn" type="button" onClick={handleShowContainer}>
-          Show container
+          Show Filter
         </button>
       </form>
       {showContainer && (
@@ -52,9 +37,7 @@ function Search() {
           <Container
             className="filter-conatainer"
             onClose={handleCloseContainer}
-          >
-            {/* <p>This is the content inside the container.</p> */}
-          </Container>
+          ></Container>
         </div>
       )}
     </div>

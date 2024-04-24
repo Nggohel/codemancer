@@ -122,11 +122,12 @@ p {
   border-radius: 10px;
 }
 .container {
-  width: 800px;
+  width: 836px;
   height: auto;
   border-radius: 8px;
   /* border: 1px solid; */
   background-color: rgb(224, 246, 254);
+  margin-right: 232px;
 }
 
 /* Icon-cards -conatiner */
