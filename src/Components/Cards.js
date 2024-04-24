@@ -3,6 +3,7 @@ import LoderImg from "./Images/loader-img.gif";
 import { useDebounce } from "./Utility/Debounce";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
+import Loader from "./Loader";
 
 function Cards({ searchValue }) {
   const [recipes, setRecipes] = useState([]);
@@ -70,9 +71,17 @@ function Cards({ searchValue }) {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <div className="cards-container">
-      {loading && <p>Loading...</p>}
+      {loading && <Loader/>}
       {!loading && debouncedValue === "" && recipes.length === 0 && (
         <p>No recipes found.</p>
       )}
@@ -97,9 +106,7 @@ function Cards({ searchValue }) {
             </div>
           </Link>
         ))}
-      {!loading &&
-        debouncedValue !== "" &&
-        searchrecipes.length === 0 && (
+      {!loading && debouncedValue !== "" && searchrecipes.length === 0 && (
         <p>No recipes found for "{debouncedValue}".</p>
       )}
       {!loading &&
@@ -118,18 +125,21 @@ function Cards({ searchValue }) {
               />
               <div className="card-body">
                 <h5 className="card-title">{recipe.recipe.label}</h5>
-                <p className="card-text">{recipe.recipe.cuisineType}cuisine</p>
+                <p className="card-text">
+                  {" "}
+                  {recipe.recipe.cuisineType} cuisine
+                </p>
               </div>
             </div>
           </Link>
         ))}
       {!loading &&
-        (debouncedValue === "" || (searchrecipes.length > 0 && debouncedValue !== "")) && (
-        <button onClick={loadMore}>Load More</button>
-      )}
+        (debouncedValue === "" ||
+          (searchrecipes.length > 0 && debouncedValue !== "")) && (
+          <button onClick={loadMore}>Load More</button>
+        )}
     </div>
   );
 }
 
 export default Cards;
-

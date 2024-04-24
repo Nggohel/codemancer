@@ -18,9 +18,9 @@ function Header() {
           <Link to="/">
             <a class="navbar-brand">Home</a>
           </Link>
-          <a class="navbar-brand" href="#">
-            About
-          </a>
+          <Link to="/about">
+            <a class="navbar-brand">About</a>
+          </Link>
         </div>
         <div>
           <button className="login-btn">Log in</button>
