@@ -60,13 +60,6 @@ p {
 
 /* second page css */
 
-.details-container {
-  /* display: flex;
-  /* align-items: center; */
-  /* padding: 30px; */
-  /* justify-content: center; */
-  /* gap: 20px; */
-}
 
 .phase-one {
   display: flex;
@@ -163,8 +156,6 @@ p {
   cursor: pointer;
 }
 
-.filter-title {
-}
 svg.icon-color {
   fill: rgb(186, 195, 198);
 }
