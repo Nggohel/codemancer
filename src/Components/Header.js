@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./Images/Logo";
+import Logo from "./Images/logo.svg";
 // import logo from "./Images/Reciepe_logo.png";
 import { Link } from "react-router-dom";
 
@@ -10,7 +10,8 @@ function Header() {
         <div>
           <a class="navbar-brand" href="#">
             <Link to="/">
-              <Logo />
+              {/* <Logo /> */}
+              <img src={Logo} className="logo-img"></img>
             </Link>
           </a>
         </div>

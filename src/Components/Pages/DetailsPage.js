@@ -85,7 +85,7 @@ function DetailsPage() {
             <h5 class="card-title">About this Recipe </h5>
             <p class="card-text">
               For more Details about recipe{" "}
-              <a href={singlerecipes?.url}>link here</a>
+              <a className="click-here" href={singlerecipes?.url}>Click here</a>
             </p>
           </div>
           {/* about recipe end */}
@@ -188,7 +188,7 @@ function DetailsPage() {
 
             {/* all recipe button */}
 
-            <div>
+            <div className="allrecipes-btn-conatainer">
               <Link to="/">
                 <button className="all-recipes-btn">All Recipes</button>
               </Link>

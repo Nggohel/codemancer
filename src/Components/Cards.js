@@ -90,10 +90,10 @@ function Cards({ searchValue }) {
         recipes.length > 0 &&
         recipes.map((recipe, index) => (
           <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
-            <div className="card" style={{ width: "22rem" }}>
+            <div className="card" style={{ width: "23rem" }}>
               <LazyLoadImage
                 src={recipe.recipe.image}
-                width={350}
+                width={366}
                 height={300}
                 PlaceholderSrc={LoderImg}
                 alt="Image Alt"

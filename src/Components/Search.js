@@ -23,7 +23,7 @@ function Search({ onSearchChange }) {
         <input
           className="form-control me-2"
           type="search"
-          placeholder="Search"
+          placeholder="What do you want to eat?"
           aria-label="Search"
           value={searchValue}
           onChange={handleInputChange}
