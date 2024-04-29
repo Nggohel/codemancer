@@ -4,10 +4,12 @@ import Cards from "../Cards";
 
 function Home() {
   const [searchValue, setSearchValue] = useState("");
+  
 
   const handleSearchChange = (value) => {
     setSearchValue(value);
   };
+
   return (
     <div>
       <Search onSearchChange={handleSearchChange} />
