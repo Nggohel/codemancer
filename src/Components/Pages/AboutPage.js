@@ -3,7 +3,7 @@ import React from "react";
 function AboutPage() {
   return (
     <div className="about-page">
-      <h1 style={{textAlign:"center"}}>About Us</h1>
+      <h1 style={{ textAlign: "center" }}>About Us</h1>
       <div className="mission-section">
         <h2>Our Mission</h2>
         <p>
@@ -14,9 +14,9 @@ function AboutPage() {
       <div className="team-section">
         <h2>Meet the Team</h2>
         <p>
-          Food. is brought to you by a team of passionate food
-          enthusiasts and experienced chefs who are dedicated to bringing you
-          the best recipes and culinary content.
+          Receptor is brought to you by a team of passionate food enthusiasts
+          and experienced chefs who are dedicated to bringing you the best
+          recipes and culinary content.
         </p>
       </div>
       <div className="story-section">
@@ -29,16 +29,46 @@ function AboutPage() {
       <div className="values-section">
         <h2>Our Values</h2>
         <p>
-          At  Food., we believe in authenticity, inclusivity,
-          creativity, sustainability, and community.
+          At Receptor, we believe in authenticity, inclusivity, creativity,
+          sustainability, and community.
         </p>
       </div>
       <div className="contact-section">
         <h2>Contact Us</h2>
         <p>
           Have a question or feedback? We'd love to hear from you! Contact us at
-          gohelnidhi15898@gmail.com  or fill out the form below.
+          gohelnidhi15898@gmail.com or fill out the form below.
         </p>
+        <from>
+          <table>
+            <br></br>
+            <tr>
+              <td>
+                <lable>Your Email : </lable>
+              </td>
+              <td>
+                <input type="email" placeholder="Enter your mail"></input>
+              </td>
+            </tr>
+            <br></br>
+            <tr>
+              <td></td>
+              <td>
+                <textarea
+                  placeholder="Enter your question or feedback?"
+                  rows={5}
+                  cols={50}
+                ></textarea>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <input type="submit"></input>
+              </td>
+            </tr>
+          </table>
+        </from>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import DetailsPage from "./Components/Pages/DetailsPage";
 import Home from "./Components/Pages/Home";
 import Layout from "./Components/Layout";
 import AboutPage from "./Components/Pages/AboutPage";
-
+import SavedRecipesPage from "./Components/Pages/SavedRecipesPage";
 function App() {
   return (
     <RecipeContextProvider>
@@ -16,6 +16,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="about" element={<AboutPage />} />
               <Route path="recipe/:url" element={<DetailsPage />} />
+              <Route path="yourallrecipe" element={<SavedRecipesPage/>} />
               <Route path="*" element={<div>No Page Found</div>} />
             </Route>
           </Routes>

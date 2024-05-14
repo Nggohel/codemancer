@@ -6,15 +6,20 @@ import { Link } from "react-router-dom";
 import Loader from "./Loader";
 import { useRecipeContext } from "./Hook/UseContext";
 function Cards({ searchValue }) {
-  const { selectedFilterValue } = useRecipeContext();
-  const [recipes, setRecipes] = useState([]);
-  const [searchrecipes, setSearchRecipes] = useState([]);
-  const [filterRecipes, setFilterRecipes] = useState([]);
-  const [next, setNext] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    selectedFilterValue,
+    recipes,
+    setRecipes,
+    next,
+    setNext,
+    loading,
+    setLoading,
+  } = useRecipeContext();
+
   const debouncedValue = useDebounce(searchValue, 1500);
 
   async function fetchFilterValueRecipes(value) {
+    console.log("fetchFilterValueRecipes", value);
     setLoading(true);
     try {
       const response = await fetch(
@@ -26,17 +31,18 @@ function Cards({ searchValue }) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      setNext(data);
       if (data) {
-        setFilterRecipes(data.hits);
+        setRecipes(data.hits);
+        setLoading(false);
       }
-      setLoading(false);
+      // setLoading(false);
     } catch (error) {
       console.error("Error fetching recipes:", error);
       setLoading(false);
     }
   }
 
-  console.log(filterRecipes);
   useEffect(() => {
     if (selectedFilterValue !== "") {
       fetchFilterValueRecipes(selectedFilterValue);
@@ -65,10 +71,11 @@ function Cards({ searchValue }) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      setNext(data);
       if (data) {
-        setSearchRecipes(data.hits);
+        setRecipes(data.hits);
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching recipes:", error);
       setLoading(false);
@@ -96,14 +103,12 @@ function Cards({ searchValue }) {
     }
   }
 
-
-  
   const loadMore = async () => {
     setLoading(true);
-    // console.log(next?._links?.next.href);
+
     try {
       const response = await fetch(next?._links?.next.href);
-      // console.log("Response:", response); // Log the response
+
       const data = await response.json();
       setRecipes([...recipes, ...data.hits]);
       setLoading(false);
@@ -113,6 +118,8 @@ function Cards({ searchValue }) {
     }
   };
 
+
+  // infinite Scrolling
   useEffect(() => {
     const handleInfiniteScroll = () => {
       try {
@@ -131,7 +138,7 @@ function Cards({ searchValue }) {
 
     window.addEventListener("scroll", handleInfiniteScroll);
     return () => window.removeEventListener("scroll", handleInfiniteScroll);
-  }, [loading, debouncedValue, searchrecipes, next]);
+  }, [loading, debouncedValue, next]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -149,62 +156,13 @@ function Cards({ searchValue }) {
       )}
 
       {!loading &&
-        debouncedValue === "" &&
         recipes.length > 0 &&
         recipes.map((recipe, index) => (
           <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
             <div className="card" style={{ width: "23rem" }}>
               <LazyLoadImage
                 src={recipe.recipe.image}
-                width={366}
-                height={300}
-                PlaceholderSrc={LoderImg}
-                alt="Image Alt"
-                effect="blur"
-              />
-              <div className="card-body">
-                <h5 className="card-title">{recipe.recipe.label}</h5>
-                <p className="card-text">{recipe.recipe.cuisineType}cuisine</p>
-              </div>
-            </div>
-          </Link>
-        ))}
-
-      {!loading && debouncedValue !== "" && searchrecipes.length === 0 && (
-        <p>No recipes found for "{debouncedValue}".</p>
-      )}
-      {/* 
-      {!loading &&  
-        filterRecipes.length > 0 &&
-        filterRecipes.map((recipe, index) => (
-          <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
-            <div className="card" style={{ width: "22rem" }}>
-              <LazyLoadImage
-                src={recipe.recipe.image}
-                width={350}
-                height={300}
-                PlaceholderSrc={LoderImg}
-                alt="Image Alt"
-                effect="blur"
-              />
-              <div className="card-body">
-                <h5 className="card-title">{recipe.recipe.label}</h5>
-                <p className="card-text">
-                  {" "}
-                  {recipe.recipe.cuisineType} cuisine
-                </p>
-              </div>
-            </div>
-          </Link>
-        ))} */}
-      {!loading &&
-        filterRecipes.length > 0 &&
-        filterRecipes.map((recipe, index) => (
-          <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
-            <div className="card" style={{ width: "22rem" }}>
-              <LazyLoadImage
-                src={recipe.recipe.image}
-                width={350}
+                width={370}
                 height={300}
                 PlaceholderSrc={LoderImg}
                 alt="Image Alt"
@@ -221,30 +179,77 @@ function Cards({ searchValue }) {
           </Link>
         ))}
 
-      {!loading &&
-        debouncedValue !== "" &&
-        searchrecipes.length > 0 &&
-        searchrecipes.map((recipe, index) => (
-          <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
-            <div className="card" style={{ width: "22rem" }}>
-              <LazyLoadImage
-                src={recipe.recipe.image}
-                width={350}
-                height={300}
-                PlaceholderSrc={LoderImg}
-                alt="Image Alt"
-                effect="blur"
-              />
-              <div className="card-body">
-                <h5 className="card-title">{recipe.recipe.label}</h5>
-                <p className="card-text">
-                  {" "}
-                  {recipe.recipe.cuisineType} cuisine
-                </p>
+      
+ {/* general Approch */}
+      {/* {!loading &&
+        ((debouncedValue == "" &&
+          filterRecipes.length > 0 &&
+          filterRecipes.map((recipe, index) => (
+            <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
+              <div className="card" style={{ width: "22rem" }}>
+                <LazyLoadImage
+                  src={recipe.recipe.image}
+                  width={370}
+                  height={300}
+                  PlaceholderSrc={LoderImg}
+                  alt="Image Alt"
+                  effect="blur"
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{recipe.recipe.label}</h5>
+                  <p className="card-text">
+                    {" "}
+                    {recipe.recipe.cuisineType} cuisine
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))) ||
+          (debouncedValue !== "" &&
+            searchrecipes.length > 0 &&
+            searchrecipes.map((recipe, index) => (
+              <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
+                <div className="card" style={{ width: "22rem" }}>
+                  <LazyLoadImage
+                    src={recipe.recipe.image}
+                    width={370}
+                    height={300}
+                    PlaceholderSrc={LoderImg}
+                    alt="Image Alt"
+                    effect="blur"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{recipe.recipe.label}</h5>
+                    <p className="card-text">
+                      {" "}
+                      {recipe.recipe.cuisineType} cuisine
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))) ||
+          (recipes.length > 0 &&
+            recipes.map((recipe, index) => (
+              <Link key={index} to={`/recipe/${btoa(recipe._links.self.href)}`}>
+                <div className="card" style={{ width: "23rem" }}>
+                  <LazyLoadImage
+                    src={recipe.recipe.image}
+                    width={370}
+                    height={300}
+                    PlaceholderSrc={LoderImg}
+                    alt="Image Alt"
+                    effect="blur"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{recipe.recipe.label}</h5>
+                    <p className="card-text">
+                      {" "}
+                      {recipe.recipe.cuisineType} cuisine
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))))} */}
     </div>
   );
 }

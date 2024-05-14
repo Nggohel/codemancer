@@ -13,7 +13,7 @@ function Container({ onClose }) {
     selectedIcon,
     handleIconClick,
     handleApplyFilter,
-    clearFilter,
+    handleClearFilter,
     setSelectedIcon,
   } = useRecipeContext();
 
@@ -136,7 +136,7 @@ function Container({ onClose }) {
           )}
           <button
             className={`close-btn ${selectedIcon ? "apply-btn" : ""}`}
-            onClick={() => setSelectedIcon(null)}
+            onClick={handleClearFilter}
           >
             Clear Filter
           </button>

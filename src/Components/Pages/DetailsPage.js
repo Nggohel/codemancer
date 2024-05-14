@@ -5,7 +5,6 @@ function DetailsPage() {
   const [singlerecipes, setSingleRecipes] = useState([]);
   const { url: enc } = useParams();
   const url = atob(enc);
-
   console.log(url);
 
   useEffect(() => {
@@ -27,7 +26,12 @@ function DetailsPage() {
     fetchSingleRecipes();
   }, [url]);
 
-  console.log(singlerecipes);
+  const handleAddToYourRecipes = () => {
+    const storedRecipes = JSON.parse(localStorage.getItem("yourRecipes")) || [];
+    storedRecipes.push(singlerecipes);
+    localStorage.setItem("yourRecipes", JSON.stringify(storedRecipes));
+    alert("Recipe added to YourRecipes");
+  };
   return (
     <>
       <div className="details-container">
@@ -85,7 +89,9 @@ function DetailsPage() {
             <h5 class="card-title">About this Recipe </h5>
             <p class="card-text">
               For more Details about recipe{" "}
-              <a className="click-here" href={singlerecipes?.url}>Click here</a>
+              <a className="click-here" href={singlerecipes?.url}>
+                Click here
+              </a>
             </p>
           </div>
           {/* about recipe end */}
@@ -190,8 +196,16 @@ function DetailsPage() {
 
             <div className="allrecipes-btn-conatainer">
               <Link to="/">
-                <button className="all-recipes-btn">All Recipes</button>
+                <button className="all-recipes-btn">
+                  <b>All Recipes</b>
+                </button>
               </Link>
+              <button
+                className="all-yourrecipes-btn"
+                onClick={handleAddToYourRecipes}
+              >
+                <b>Add To YourRecipes List</b>
+              </button>
             </div>
           </div>
           <div></div>

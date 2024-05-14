@@ -10,7 +10,7 @@ function Header() {
         <div>
           <a class="navbar-brand" href="#">
             <Link to="/">
-              {/* <Logo /> */}
+             
               <img src={Logo} className="logo-img"></img>
             </Link>
           </a>
@@ -24,7 +24,8 @@ function Header() {
           </Link>
         </div>
         <div>
-          <button className="login-btn">Log in</button>
+        <Link to="/yourallrecipe"><button className="login-btn">Saved Recipe</button></Link>
+          
         </div>
       </nav>
     </div>

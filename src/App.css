@@ -26,13 +26,20 @@ p {
 .logo-img {
   height: 51px;
 }
-.login-btn {
+.login-btn,
+.remove-btn {
   background-color: lightblue;
   border: none;
   border-radius: 10px;
   padding: 3px 12px;
 }
+.remove-btn{
+  margin-left: 16px;
+}
+.remove-btn:hover {
+  border: 1px solid;
 
+}
 .d-flex {
   margin: 25px;
   margin-left: 280px;
@@ -130,11 +137,17 @@ p {
   justify-content: space-evenly;
 }
 
-.all-recipes-btn {
+.all-recipes-btn,
+.all-yourrecipes-btn {
   border: none;
   background-color: lightblue;
   padding: 13px;
   border-radius: 10px;
+}
+.all-recipes-btn:hover,
+.all-yourrecipes-btn:hover {
+  padding: 15px;
+  background-color: rgb(122, 177, 196);
 }
 .container {
   width: 836px;
@@ -293,4 +306,15 @@ svg.icon-stroke {
     align-items: center;
     justify-content: center;
   }
+}
+.allrecipes-btn-conatainer {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.recipes-list{
+  display: flex;
+  gap:10px
 }
